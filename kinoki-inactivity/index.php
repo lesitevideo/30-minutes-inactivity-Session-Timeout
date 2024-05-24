@@ -6,7 +6,7 @@ Version: 1.0
 Author: Kinoki team
 */
 
-function custom_session_timeout_script() {
+function cnesbo_session_timeout_script() {
     ?>
     <script>
         jQuery(document).ready(function($) {
@@ -20,7 +20,7 @@ function custom_session_timeout_script() {
 
             function logoutUser() {
                 var data = {
-                    'action': 'custom_verify_user_session'
+                    'action': 'cnesbo_verify_user_session'
                 };
                 $.post(ajaxurl, data, function(response) {
                     alert('Votre session est terminée faute de la moindre activité depuis 30 minutes.');
@@ -35,12 +35,12 @@ function custom_session_timeout_script() {
     <?php
 }
 
-function custom_verify_user_session() {
+function cnesbo_verify_user_session() {
     wp_destroy_current_session();
     wp_die();
 }
 
-add_action('admin_head', 'custom_session_timeout_script');
+add_action('admin_head', 'cnesbo_session_timeout_script');
 
-add_action('wp_ajax_custom_verify_user_session', 'custom_verify_user_session');
+add_action('wp_ajax_cnesbo_verify_user_session', 'cnesbo_verify_user_session');
 ?>
